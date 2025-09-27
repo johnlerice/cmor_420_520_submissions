@@ -1,0 +1,87 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[letterpaper, margin=.75in]{geometry}
+\usepackage[latin1]{inputenc}
+\usepackage{float}
+\usepackage{xypic}
+\usepackage{graphicx, amsthm, amsmath, amssymb}
+\graphicspath{{images/}{../images/}}
+\usepackage{mathrsfs }
+\usepackage{marginnote}
+\usepackage{multicol}
+\usepackage{subfiles}
+\usepackage{listings}
+
+
+\usepackage{tikz, pgf, calc}
+\usetikzlibrary{arrows,matrix,positioning,fit,calc}
+\usepackage[linewidth=1pt]{mdframed}
+\usepackage{parskip}
+\usepackage{cancel}
+
+
+%% Theorems %%
+\newtheorem{theorem}{Theorem}[section]
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\theoremstyle{definition}
+\newtheorem{exmp}{Example}[section]
+\newtheorem{prop}{Proposition}[section]
+\newtheorem{cor}{Corollary}[section]
+\newtheorem{lem}{Lemma}[section]
+\newtheorem*{rem}{Remark}
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+
+\newcommand{\sumin}{\sum_{i=1}^n}
+\newcommand{\dt}{\Delta t}
+
+\author{jl530}
+\title{CMOR 420/520, Homework \#1: \LaTeX \ Submission}
+
+\begin{document}
+\maketitle
+
+\section{Communicating with remote repository}
+Git command to add, commit, and push file to remote repository
+\begin{verbatim}
+    #!/bin/bash 
+    directory_name=$1 
+    git add "$directory_name" 
+    git commit -m "Adding $directory_name to remote repository" 
+    git push
+\end{verbatim}
+Output of git log after committing
+\begin{verbatim}
+    (base) johnle@MacBook-Pro-48 cmor_420_520_submissions % git log --oneline -n 3 
+    4d31877 (HEAD -> main, origin/main) Adding HW_1_JohnLe to remote repository 
+    9d588fa Initial commit: Adding HW_1_JohnLe and git_push.sh
+\end{verbatim}
+
+\section{A script to push a folder to a remote repository}
+
+\begin{lstlisting}[caption={Bash script for pushing a folder to a remote Git repository.}]
+
+    #!/bin/bash 
+    directory_name=$1 
+    git add "$directory_name" 
+    git commit -m "Adding $directory_name to remote repository" 
+    git push
+\end{lstlisting}
+
+Line-by-line description:
+\begin{itemize}
+    \item \textbf{Line 1}: specifies the script uses bash
+    \item \textbf{Line 2}: allows first argument to be called the directory name
+    \item \textbf{Line 3}: runs git add stored in that directory name
+    \item \textbf{Line 4}: commits the file with the saved message
+    \item \textbf{Line 5}: pushes the file!
+\end{itemize}
+
+One way I could see this code not working is if they forget to add a directory, and just went straight to using the shell script. Another thing is that it doesn't check if there is an initialized git repository/directory, if they were to just run this none of the git commands would work. 
+
+
+
+\end{document}
